@@ -344,8 +344,12 @@ void HashTable<K, V, Prober, Hash, KEqual>::insert(const ItemType& p) {
     table_[h] = item;
     numOfUsedSpace++;
   } else {
-    std::cout << "UNKNOWN Result: " << h << std::endl;
-    std::cout << "UNKNOWN Result: " << table_[h] << std::endl;
+    // I assume this occurs when there is duplicate
+    // so I should overwrite
+    delete table_[h];
+    table_[h] = new HashItem(p);
+    // std::cout << "UNKNOWN Result: " << h << std::endl;
+    // std::cout << "UNKNOWN Result: " << table_[h] << std::endl;
   }
 }
 
