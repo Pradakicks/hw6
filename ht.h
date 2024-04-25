@@ -314,7 +314,16 @@ HashTable<K, V, Prober, Hash, KEqual>::HashTable(double resizeAlpha,
 // To be completed
 template <typename K, typename V, typename Prober, typename Hash,
           typename KEqual>
-HashTable<K, V, Prober, Hash, KEqual>::~HashTable() {}
+HashTable<K, V, Prober, Hash, KEqual>::~HashTable() {
+  numOfUsedSpace = 0;
+  numOfRemovedItems = 0;
+  totalProbes_ = 0;
+  for (int i = 0; i < CAPACITIES[mIndex_]; i++) {
+    delete table_[i];
+  }
+  table_.clear();
+
+}
 
 template <typename K, typename V, typename Prober, typename Hash,
           typename KEqual>
