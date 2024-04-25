@@ -10,6 +10,7 @@
 #include "hash.h"
 using namespace std;
 int main() {
+
   DoubleHashProber<std::string, MyStringHash> dh;
   HashTable<std::string, int, DoubleHashProber<std::string, MyStringHash>,
             std::hash<std::string>, std::equal_to<std::string> >
